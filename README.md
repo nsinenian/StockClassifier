@@ -1,7 +1,35 @@
 # StockClassifier
 Deep Learning Network for Quarterly Stock Performance Classification
 
+[**Quickstart**](#quickstart)
+| [**Notebooks**](#notebooks)
+| [**Python Classes**](#python-classes)
+| [**Dependences**](#dependencies)
+
 This project consists of notebook and Python classes that can be used to train a PyTorch deep learning model to predict stock performance for the next quarter or few months. The framework consists of a Python API for accessing historical stock data from https://financialmodelingprep.com/. The notebooks use the API to inspect historical data for S&P 500 stocks, to generate features for model training and to generate predictions from a trained model. Model training and prediction generation is facilitated by a set of Python classes designed to work with PyTorch.
+
+## Quickstart
+A pre-trained model is provided that can be used to test out the classifier. After cloning the repository, the following Python code can be used to create a model instance from trained model data files
+
+```python
+from model.classifier import StockClassifier
+from model.predictor import StockClassifierPredictor
+
+import torch
+model = StockClassifier.from_file('data')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# Check model for training date and metadata
+print(model)
+
+# Create a predictor instance using our trained model.
+predictor = StockClassifierPredictor(model,device)
+
+# The stock_ticker argument is a string containing the ticker symbol (e.g., "AAPL")
+y = predictor.predict(stock_ticker)
+```
+
+The result will be either a 0 or a 1 indicating whether the stock is predicted to overperform (1) or underperform(0) relative to the S&P 500. An exception may be thrown if sufficient date is not available for the selected stock ticker (an internet connection is required to download data). The pretrained model was trained using only S&P 500 stock data.
 
 ## Notebooks
 
