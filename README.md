@@ -1,15 +1,15 @@
-# StockClassifier
-Deep Learning Network for Quarterly Stock Performance Classification
+# StockClassifier: Deep Learning Stock Classification
+
 
 [**Quickstart**](#quickstart)
-| [**Notebooks**](#notebooks)
+| [**Jupyter Notebooks**](#notebooks)
 | [**Python Classes**](#python-classes)
-| [**Dependences**](#dependencies)
+| [**Dependencies**](#dependencies)
 
 This project consists of notebook and Python classes that can be used to train a PyTorch deep learning model to predict stock performance for the next quarter or few months. The framework consists of a Python API for accessing historical stock data from https://financialmodelingprep.com/. The notebooks use the API to inspect historical data for S&P 500 stocks, to generate features for model training and to generate predictions from a trained model. Model training and prediction generation is facilitated by a set of Python classes designed to work with PyTorch.
 
 ## Quickstart
-A pre-trained model is provided that can be used to test out the classifier. After cloning the repository, the following Python code can be used to create a model instance from trained model data files
+A pre-trained model is provided that can be used to test out the classifier. After cloning the repository, the following Python code can be used to create a model instance from trained model data files:
 
 ```python
 from model.classifier import StockClassifier
