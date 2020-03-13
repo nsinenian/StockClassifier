@@ -29,11 +29,11 @@ predictor = StockClassifierPredictor(model,device)
 y = predictor.predict(stock_ticker)
 ```
 
-The result will be either a 0 or a 1 indicating whether the stock is predicted to overperform (1) or underperform(0) relative to the S&P 500. An exception may be thrown if sufficient date is not available for the selected stock ticker (an internet connection is required to download data). The pretrained model was trained using only S&P 500 stock data. Please note that certain external packages are required as described below under [**dependencies**](#dependencies).
+The result will be either a 0 or a 1 indicating whether the stock is predicted to overperform (1) or underperform(0) relative to the S&P 500 three months from now. An exception may be thrown if sufficient date is not available for the selected stock ticker (an internet connection is required to download data). The pretrained model was trained using only S&P 500 stock data. Please note that certain external packages are required as described below under [**dependencies**](#dependencies).
 
 ## Benchmarks
 
-The methodology introduced in this project has been benchmarked against random selection of stocks (i.e., random selection of outperformers). It has also been compared against historical analyst predictions for Q3/Q4 of 2019. The performance, as primarily measured by precision exceeds that of analysts predictions and of random selection. Bear in mind that no future earnings estimates or analysis is included in this model, and only historical data is utilized. Some metrics are summarized for the data set included in this repository. The datasets included in this repository includes S&P 500 stocks and spans the time interval Q2'18 through Q1'20. The performance of the pretrained model using this dataset is summarized in the table below.
+The methodology introduced in this project has been benchmarked against random selection of stocks (i.e., random selection of outperformers). It has also been compared against historical analyst predictions for Q3/Q4 of 2019. The performance, as primarily measured by precision exceeds that of analysts predictions and of random selection. Bear in mind that no future earnings estimates or analysis is included in this model, and only historical data is utilized. Some metrics are summarized for the data set included in this repository. The datasets included in this repository includes S&P 500 stocks and spans the time interval Q2'18 through Q1'20. The performance of the pretrained model using this dataset is summarized in the table below. Note that the dataset is slightly biased towards negative classes (0s) and therefore a fair coin toss yields a precision of less than 0.5.
 
 <table>
   <tr>
