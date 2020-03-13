@@ -8,8 +8,6 @@
 A deep-learning binary classifier that can be used to predict whether a stock is going to outperform or underperform relative to a reference value (e.g., the S&P 500). The model consists of LSTM and linear layers that are trained to recognize patterns in time-series and categorical data pertaining to a large number of stocks, including daily time-series (price and volume), quarterly metrics (valuation, revenue and earnings data) along with discrete and continous categorical data (e.g., industry sector and market capitalization).
 
 
-
-
 ## Quickstart
 A pre-trained model is provided that can be used to test out the classifier. After cloning the repository, the following Python code can be used to create a model instance from trained model data files:
 
@@ -36,12 +34,13 @@ The result will be either a 0 or a 1 indicating whether the stock is predicted t
 ## Benchmarks
 
 The methodology introduced in this project has been benchmarked against random selection of stocks (i.e., random selection of outperformers). It has also been compared against historical analyst predictions for Q3/Q4 of 2019. The performance, as primarily measured by precision exceeds that of analysts predictions and of random selection. Bear in mind that no future earnings estimates or analysis is included in this model, and only historical data is utilized. Some metrics are summarized for the data set included in this repository. The datasets included in this repository includes S&P 500 stocks and spans the time interval Q2'18 through Q1'20. The performance of the pretrained model using this dataset is summarized in the table below.
+
 <table>
   <tr>
-    <td></td>
-    <td colspan="2">Coin Toss</td>
-    <td colspan="2">Analysts</td>
-    <td colspan="2">This Model</td>
+    <th></td>
+    <th colspan="2">Fair Coin Toss</td>
+    <th colspan="2">Analyst Recommendation</td>
+    <th colspan="2">This Model</td>
   </tr>
   <tr>
     <td></td>
@@ -71,7 +70,7 @@ The methodology introduced in this project has been benchmarked against random s
     <td>1242</td>
   </tr>
    <tr>
-    <td>F1</td>
+    <td>F1 Score</td>
     <td colspan="2">0.48</td>
     <td colspan="2">0.57</td>
     <td colspan="2">0.58</td>
