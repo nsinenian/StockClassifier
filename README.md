@@ -29,7 +29,7 @@ predictor = StockClassifierPredictor(model,device)
 y = predictor.predict(stock_ticker)
 ```
 
-The result will be either a 0 or a 1 indicating whether the stock is predicted to overperform (1) or underperform(0) relative to the S&P 500. An exception may be thrown if sufficient date is not available for the selected stock ticker (an internet connection is required to download data). The pretrained model was trained using only S&P 500 stock data.
+The result will be either a 0 or a 1 indicating whether the stock is predicted to overperform (1) or underperform(0) relative to the S&P 500. An exception may be thrown if sufficient date is not available for the selected stock ticker (an internet connection is required to download data). The pretrained model was trained using only S&P 500 stock data. Please note that certain external packages are required as described below under [**dependencies**](#dependencies).
 
 ## Notebooks
 
@@ -41,12 +41,18 @@ Model training and prediction generation is implemented in two notebooks, respec
 ## Python Classes
 The following classes have been implemented for use in training a model and generating predictions:
 
-  - `StockDataSet`: A dataset derived from a PyTorch dataset to facilitate
-  - `StockClassifier`: A deep learning model
-  - `StockClassifierEstimator`: A class that can be used to train a `StockClassifier` model
+  - `StockDataSet`: A dataset derived from a PyTorch dataset to hold training and testing data
+  - `StockClassifier`: A deep learning model definition class
+  - `StockClassifierEstimator`: A class used to train a `StockClassifier` model (object instance)
   - `StockClassifierPredictor`: A class that can be used to load a trained model and obtain predictions
 
 Unless significant changes to the model are desired, these classes can be used with a wide range of categorical features and time-series features with daily, quarterly frequencies. These classes are used in the data processing, training, and prediction notebooks.
 
 ## Dependencies
-Use of the notebooks and Python classes requires the typical external dependences: PyTorch, NumPy, Pandas, Beautiful Soup, and Matplotlib.
+Use of the notebooks and Python classes require the following external dependences: 
+
+   - PyTorch
+   - NumPy
+   - Pandas
+   - Beautiful Soup
+   - Matplotlib
