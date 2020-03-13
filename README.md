@@ -1,10 +1,37 @@
 # StockClassifier: Deep Learning Stock Classification
 
-[**Organization**](#organization)
-| [**Quickstart**](#quickstart)
+[**Quickstart**](#quickstart)
+| [**Benchmarks**](#benchmarks)
+| [**Organization**](#organization)
 | [**Dependencies**](#dependencies)
 
 A deep-learning binary classifier that can be used to predict whether a stock is going to outperform or underperform relative to a reference value (e.g., the S&P 500). The model consists of LSTM and linear layers that are trained to recognize patterns in time-series and categorical data pertaining to a large number of stocks, including daily time-series (price and volume), quarterly metrics (valuation, revenue and earnings data) along with discrete and continous categorical data (e.g., industry sector and market capitalization).
+
+
+
+
+## Quickstart
+A pre-trained model is provided that can be used to test out the classifier. After cloning the repository, the following Python code can be used to create a model instance from trained model data files:
+
+```python
+from model.classifier import StockClassifier
+from model.predictor import StockClassifierPredictor
+
+import torch
+model = StockClassifier.from_file('data')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# Check model for training date and metadata
+print(model)
+
+# Create a predictor instance using our trained model.
+predictor = StockClassifierPredictor(model,device)
+
+# The stock_ticker argument is a string containing the ticker symbol (e.g., "AAPL")
+y = predictor.predict(stock_ticker)
+```
+
+The result will be either a 0 or a 1 indicating whether the stock is predicted to overperform (1) or underperform(0) relative to the S&P 500. An exception may be thrown if sufficient date is not available for the selected stock ticker (an internet connection is required to download data). The pretrained model was trained using only S&P 500 stock data. Please note that certain external packages are required as described below under [**dependencies**](#dependencies).
 
 ## Benchmarks
 
@@ -87,32 +114,6 @@ The following classes have been implemented for use in training a model and gene
   - `StockClassifierPredictor`: A class that can be used to load a trained model and obtain predictions
 
 Unless significant changes to the model are desired, these classes can be used with a wide range of categorical features and time-series features with daily, quarterly frequencies. These classes are used in the data processing, training, and prediction notebooks.
-
-
-
-## Quickstart
-A pre-trained model is provided that can be used to test out the classifier. After cloning the repository, the following Python code can be used to create a model instance from trained model data files:
-
-```python
-from model.classifier import StockClassifier
-from model.predictor import StockClassifierPredictor
-
-import torch
-model = StockClassifier.from_file('data')
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-# Check model for training date and metadata
-print(model)
-
-# Create a predictor instance using our trained model.
-predictor = StockClassifierPredictor(model,device)
-
-# The stock_ticker argument is a string containing the ticker symbol (e.g., "AAPL")
-y = predictor.predict(stock_ticker)
-```
-
-The result will be either a 0 or a 1 indicating whether the stock is predicted to overperform (1) or underperform(0) relative to the S&P 500. An exception may be thrown if sufficient date is not available for the selected stock ticker (an internet connection is required to download data). The pretrained model was trained using only S&P 500 stock data. Please note that certain external packages are required as described below under [**dependencies**](#dependencies).
-
 
 ## Dependencies
 Use of the notebooks and Python classes require the following external dependences: 
