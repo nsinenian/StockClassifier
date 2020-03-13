@@ -1,11 +1,67 @@
 # StockClassifier: Deep Learning Stock Classification
 
-
 [**Organization**](#organization)
 | [**Quickstart**](#quickstart)
 | [**Dependencies**](#dependencies)
 
 A deep-learning binary classifier that can be used to predict whether a stock is going to outperform or underperform relative to a reference value (e.g., the S&P 500). The model consists of LSTM and linear layers that are trained to recognize patterns in time-series and categorical data pertaining to a large number of stocks, including daily time-series (price and volume), quarterly metrics (valuation, revenue and earnings data) along with discrete and continous categorical data (e.g., industry sector and market capitalization).
+
+## Benchmarks
+
+The methodology introduced in this project has been benchmarked against random selection of stocks (i.e., random selection of outperformers). It has also been compared against historical analyst predictions for Q3/Q4 of 2019. The performance, as primarily measured by precision exceeds that of analysts predictions and of random selection. Bear in mind that no future earnings estimates or analysis is included in this model, and only historical data is utilized. Some metrics are summarized for the data set included in this repository. The datasets included in this repository includes S&P 500 stocks and spans the time interval Q2'18 through Q1'20. The performance of the pretrained model using this dataset is summarized in the table below.
+<table>
+  <tr>
+    <td></td>
+    <td colspan="2">Coin Toss</td>
+    <td colspan="2">Analysts</td>
+    <td colspan="2">This Model</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>True</td>
+    <td>False</td>
+    <td>True</td>
+    <td>False</td>
+    <td>True</td>
+    <td>False</td>
+  </tr>
+   <tr>
+    <td>Positive</td>
+    <td>1801</td>
+    <td>2084</td>
+    <td>94</td>
+    <td>135</td>
+    <td>1469</td>
+    <td>917</td>
+  </tr>
+  <tr>
+    <td>Negative</td>
+    <td>910</td>
+    <td>1031</td>
+    <td>21</td>
+    <td>6</td>
+    <td>2198</td>
+    <td>1242</td>
+  </tr>
+   <tr>
+    <td>F1</td>
+    <td colspan="2">0.48</td>
+    <td colspan="2">0.57</td>
+    <td colspan="2">0.58</td>
+  </tr>
+  <tr>
+    <td>Precision</td>
+    <td colspan="2">0.47</td>
+    <td colspan="2">0.41</td>
+    <td colspan="2">0.62</td>
+  </tr>
+   <tr>
+    <td>Recall</td>
+    <td colspan="2">0.50</td>
+    <td colspan="2">0.94</td>
+    <td colspan="2">0.54</td>
+  </tr>
+</table>
 
 ## Organization
 
