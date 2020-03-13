@@ -3,8 +3,6 @@
 
 [**Organization**](#organization)
 | [**Quickstart**](#quickstart)
-| [**Jupyter Notebooks**](#notebooks)
-| [**Python Classes**](#python-classes)
 | [**Dependencies**](#dependencies)
 
 A deep-learning binary classifier that can be used to predict whether a stock is going to outperform or underperform relative to a reference value (e.g., the S&P 500). The model consists of LSTM and linear layers that are trained to recognize patterns in time-series and categorical data pertaining to a large number of stocks, including daily time-series (price and volume), quarterly metrics (valuation, revenue and earnings data) along with discrete and continous categorical data (e.g., industry sector and market capitalization).
@@ -12,6 +10,28 @@ A deep-learning binary classifier that can be used to predict whether a stock is
 ## Organization
 
 The framework consists of a Python API for accessing historical stock data from https://financialmodelingprep.com/. The notebooks use the API to inspect historical data for S&P 500 stocks, to generate features for model training and to generate predictions from a trained model. Model training and prediction generation is facilitated by a set of Python classes designed to work with PyTorch.
+
+The project is setup to use historical S&P 500 data as the reference value for stock performance and historical stock gains are compared to this baseline over a period of one quarter (i.e., labeled 1 if they exceed the S&P 500 and 0 if they do not). Data for the four quarters preceding this one-quarter interval are then used as training data. The dataset as described (both four quarters of data and one quarter used to generate labels) is offset repeatedly to generate additional datasets. In total, twelve offsets are used over a period of one year to capture seasonality. The offsets are encoded in the model as categorical features, so that predictions can take advantage of any seasonal patterns on a monthly basis.
+
+The Jupyter notebooks can be readily altered to include features of interest, to train a model for different time horizons or to capture a larger collection of stocks (e.g., Russell 2000) with little to no changes to the remaining code base, as described further below.
+
+### Notebooks
+
+The workflow for model training starts with a data visualization notebook (`data_visualization.ipynb`). This notebook can be used to inspect categorical features of stocks and time-series data, including daily and quarterly time-series of interest. After data inspection, features can be generated using a second notebook (`data_processing.ipynb`). The notebook is setup such that with 4 functions that generate features: one for each of the data frequencies involved (categorical, daily and quarterly) plus a function to generate labels. As such, only these four functions need to be modified to include new features of interest. 
+
+Model training and prediction generation is implemented in two notebooks, respectively (`training.ipynb` and `prediction.ipynb`). These notebooks rely on the aforementioned Python classes implemented to work with PyTorch as discussed further below.
+ 
+
+### Python Classes
+The following classes have been implemented for use in training a model and generating predictions:
+
+  - `StockDataSet`: A dataset derived from a PyTorch dataset to hold training and testing data
+  - `StockClassifier`: A deep learning model definition class
+  - `StockClassifierEstimator`: A class used to train a `StockClassifier` model (object instance)
+  - `StockClassifierPredictor`: A class that can be used to load a trained model and obtain predictions
+
+Unless significant changes to the model are desired, these classes can be used with a wide range of categorical features and time-series features with daily, quarterly frequencies. These classes are used in the data processing, training, and prediction notebooks.
+
 
 
 ## Quickstart
@@ -37,22 +57,6 @@ y = predictor.predict(stock_ticker)
 
 The result will be either a 0 or a 1 indicating whether the stock is predicted to overperform (1) or underperform(0) relative to the S&P 500. An exception may be thrown if sufficient date is not available for the selected stock ticker (an internet connection is required to download data). The pretrained model was trained using only S&P 500 stock data. Please note that certain external packages are required as described below under [**dependencies**](#dependencies).
 
-## Notebooks
-
-The workflow for model training starts with a data visualization notebook (`data_visualization.ipynb`). This notebook can be used to inspect categorical features of stocks and time-series data, including daily and quarterly time-series of interest. After data inspection, features can be generated using a second notebook (`data_processing.ipynb`). The notebook is setup such that with 4 functions that generate features: one for each of the data frequencies involved (categorical, daily and quarterly) plus a function to generate labels. As such, only these four functions need to be modified to include new features of interest. 
-
-Model training and prediction generation is implemented in two notebooks, respectively (`training.ipynb` and `prediction.ipynb`). These notebooks rely on the aforementioned Python classes implemented to work with PyTorch as discussed further below.
- 
-
-## Python Classes
-The following classes have been implemented for use in training a model and generating predictions:
-
-  - `StockDataSet`: A dataset derived from a PyTorch dataset to hold training and testing data
-  - `StockClassifier`: A deep learning model definition class
-  - `StockClassifierEstimator`: A class used to train a `StockClassifier` model (object instance)
-  - `StockClassifierPredictor`: A class that can be used to load a trained model and obtain predictions
-
-Unless significant changes to the model are desired, these classes can be used with a wide range of categorical features and time-series features with daily, quarterly frequencies. These classes are used in the data processing, training, and prediction notebooks.
 
 ## Dependencies
 Use of the notebooks and Python classes require the following external dependences: 
