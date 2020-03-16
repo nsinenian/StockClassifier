@@ -33,14 +33,16 @@ The result will be either a 0 or a 1 indicating whether the stock is predicted t
 
 ## Benchmarks
 
-The methodology introduced in this project has been benchmarked against random stock selection of outperforms within the S&P 500. It has also been compared against historical analyst predictions for Q3/Q4 of 2019. The performance, as primarily measured by precision exceeds that of analysts predictions and of random selection. Bear in mind that no future earnings estimates or analysis is included in this model, and only historical data is utilized. Some metrics are summarized for the data set included in this repository. The datasets included in this repository includes S&P 500 stocks and spans the time interval Q2'18 through Q1'20. The performance of the pretrained model using this dataset is summarized in the table below. Note that the dataset is slightly biased towards negative classes (0s) and therefore a fair coin toss yields a precision of less than 0.5.
-<center>
+The methodology introduced in this project has been benchmarked against random stock selection of outperformers within the S&P 500 ("Coin Toss" in table below). It has also been compared against historical analyst predictions for Q3/Q4 of 2019 (average across all analysts). The performance, as primarily measured by precision, exceeds that of analyst predictions and of random selection. Bear in mind that no future earnings estimates or analysis is included in this model, and only historical data is utilized. 
+
+The data incorporated in the model and available in this repository includes S&P 500 stocks and spans the time interval Q2'18 through Q1'20. Note that the dataset is slightly biased towards negative classes (0s) and therefore a fair coin toss yields a precision of less than 0.5.
+
 <table>
   <tr>
-    <th></td>
-    <th colspan="2">Fair Coin Toss</td>
-    <th colspan="2">Analyst Recommendation</td>
-    <th colspan="2">This Model</td>
+    <th></th>
+    <th colspan="2">Fair Coin Toss</th>
+    <th colspan="2">Analysts (Q3/Q4 2019)</th>
+    <th colspan="2">This Model</th>
   </tr>
   <tr>
     <td></td>
@@ -88,7 +90,6 @@ The methodology introduced in this project has been benchmarked against random s
     <td colspan="2">0.54</td>
   </tr>
 </table>
-</center>
 
 ## Organization
 
@@ -96,7 +97,7 @@ The framework consists of a Python API for accessing historical stock data from 
 
 The project is setup to use historical S&P 500 data as the reference value for stock performance and historical stock gains are compared to this baseline over a period of one quarter (i.e., labeled 1 if they exceed the S&P 500 and 0 if they do not). Data for the four quarters preceding this one-quarter interval are then used as training data. The dataset as described (both four quarters of data and one quarter used to generate labels) is offset repeatedly to generate additional datasets. In total, twelve offsets are used over a period of one year to capture seasonality. The offsets are encoded in the model as categorical features, so that predictions can take advantage of any seasonal patterns on a monthly basis.
 
-The Jupyter notebooks can be readily altered to include features of interest, to train a model for different time horizons or to capture a larger collection of stocks (e.g., Russell 2000) with little to no changes to the remaining code base, as described further below.
+The Jupyter notebooks can be readily altered to include features of interest, to train a model for different time horizons or to capture a larger collection of stocks (e.g., Russell 1000) with little to no changes to the remaining code base, as described further below.
 
 ### Notebooks
 
