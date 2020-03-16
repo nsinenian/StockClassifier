@@ -1,11 +1,11 @@
-# StockClassifier: Deep Learning Stock Classification
+# StockClassifier: Deep Learning Stock Classifier
 
 [**Quickstart**](#quickstart)
 | [**Benchmarks**](#benchmarks)
 | [**Organization**](#organization)
 | [**Dependencies**](#dependencies)
 
-A deep-learning binary classifier that can be used to predict whether a stock is going to outperform or underperform relative to a reference value (e.g., the S&P 500). The model consists of LSTM and linear layers that are trained to recognize patterns in time-series and categorical data pertaining to a large number of stocks, including daily time-series (price and volume), quarterly metrics (valuation, revenue and earnings data) along with discrete and continous categorical data (e.g., industry sector and market capitalization).
+A deep-learning binary classifier that can be used to predict whether a stock is going to outperform or underperform the market (i.e., S&P 500) three months from date of prediction. The model consists of LSTM and linear layers that are trained to recognize patterns in time-series and categorical data pertaining to S&P 500 stocks, including daily time-series (price and volume), quarterly metrics (valuation, revenue and earnings metrics) along with discrete and continous categorical data (e.g., a firm's sector, industry, and market capitalization).
 
 
 ## Quickstart
@@ -34,7 +34,7 @@ The result will be either a 0 or a 1 indicating whether the stock is predicted t
 ## Benchmarks
 
 The methodology introduced in this project has been benchmarked against random stock selection of outperforms within the S&P 500. It has also been compared against historical analyst predictions for Q3/Q4 of 2019. The performance, as primarily measured by precision exceeds that of analysts predictions and of random selection. Bear in mind that no future earnings estimates or analysis is included in this model, and only historical data is utilized. Some metrics are summarized for the data set included in this repository. The datasets included in this repository includes S&P 500 stocks and spans the time interval Q2'18 through Q1'20. The performance of the pretrained model using this dataset is summarized in the table below. Note that the dataset is slightly biased towards negative classes (0s) and therefore a fair coin toss yields a precision of less than 0.5.
-
+<center>
 <table>
   <tr>
     <th></td>
@@ -88,6 +88,7 @@ The methodology introduced in this project has been benchmarked against random s
     <td colspan="2">0.54</td>
   </tr>
 </table>
+</center>
 
 ## Organization
 
