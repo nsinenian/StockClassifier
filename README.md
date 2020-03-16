@@ -29,18 +29,18 @@ predictor = StockClassifierPredictor(model,device)
 y = predictor.predict(stock_ticker)
 ```
 
-The result will be either a 0 or a 1 indicating whether the stock is predicted to overperform (1) or underperform(0) relative to the S&P 500 three months from now. An exception may be thrown if sufficient date is not available for the selected stock ticker (an internet connection is required to download data). The pretrained model was trained using only S&P 500 stock data. Please note that certain external packages are required as described below under [**dependencies**](#dependencies).
+The result will be either a 0 or a 1 indicating whether the stock is predicted to overperform (1) or underperform(0) relative to the S&P 500 three months from now. An exception may be thrown if sufficient date is not available for the selected stock ticker (an internet connection is required to download data). The pre-trained model was trained using only S&P 500 stock data. Please note that certain external packages are required as described below under [**dependencies**](#dependencies).
 
 ## Benchmarks
 
-The methodology introduced in this project has been benchmarked against random stock selection of outperformers within the S&P 500 ("Coin Toss" in table below). It has also been compared against historical analyst predictions for Q3/Q4 of 2019 (average across all analysts). The performance, as primarily measured by precision, exceeds that of analyst predictions and of random selection. Bear in mind that no future earnings estimates or analysis is included in this model, and only historical data is utilized. 
+The methodology introduced in this project has been benchmarked against random stock selection of outperformers within the S&P 500 ("Coin Toss" in table below). It has also been compared against historical analyst predictions for Q3/Q4 of 2019 (average across all analysts, data for all stocks not available). The performance, as primarily measured by precision, exceeds that of analyst predictions and of random selection. The precision is most important from an investment perspective since false positives can be catastrophic (false negatives associated with recall are simply missed investment opportunities). Bear in mind that no future earnings estimates or analysis is included in this model, and only historical data is utilized. 
 
-The data incorporated in the model and available in this repository includes S&P 500 stocks and spans the time interval Q2'18 through Q1'20. Note that the dataset is slightly biased towards negative classes (0s) and therefore a fair coin toss yields a precision of less than 0.5.
+The data incorporated in the model and available in this repository includes S&P 500 stocks and spans the time interval Q2'18 through Q1'20. In particular, 4 quarters of historical data are used to train the model, and the performance for the following quarter is used as a label. These 5 quarters worth of data are offset historically to generate multiple datasets for each stock, resulting in approximately 5,800 samples (e.g., sum of confusion matrix below for "Coin Toss" and "This Model"). Note that the dataset is slightly biased towards the negative (underperform) class and therefore a fair coin toss yields a precision of less than 0.5.
 
 <table>
   <tr>
     <th></th>
-    <th colspan="2">Fair Coin Toss</th>
+    <th colspan="2">Coin Toss</th>
     <th colspan="2">Analysts (Q3/Q4 2019)</th>
     <th colspan="2">This Model</th>
   </tr>
