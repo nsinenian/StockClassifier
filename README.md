@@ -5,7 +5,7 @@
 | [**Organization**](#organization)
 | [**Dependencies**](#dependencies)
 
-A deep-learning binary classifier that can be used to predict whether a stock is going to outperform or underperform the market (i.e., S&P 500) three months from date of prediction. The model consists of LSTM and linear layers that are trained to recognize patterns in time-series and categorical data pertaining to S&P 500 stocks, including daily time-series (price and volume), quarterly metrics (valuation, revenue and earnings metrics) along with discrete and continous categorical data (e.g., a firm's sector, industry, and market capitalization).
+A deep-learning binary classifier that can be used to predict whether a stock is going to outperform or underperform the market (i.e., S&P 500) three months from the date of prediction. The model consists of LSTM and linear layers that are trained to recognize patterns in time-series and categorical data pertaining to S&P 500 stocks, including daily time-series (price and volume), quarterly metrics (valuation, revenue and earnings metrics) along with discrete and continous categorical data (e.g., a firm's sector, industry, and market capitalization).
 
 
 ## Quickstart
