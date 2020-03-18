@@ -29,7 +29,7 @@ predictor = StockClassifierPredictor(model,device)
 y = predictor.predict(stock_ticker)
 ```
 
-The result will be either a 0 or a 1 indicating whether the stock is predicted to overperform (1) or underperform(0) relative to the S&P 500 three months from now. An exception may be thrown if sufficient date is not available for the selected stock ticker (an internet connection is required to download data). The pre-trained model was trained using only S&P 500 stock data. Please note that certain external packages are required as described below under [**dependencies**](#dependencies).
+The result will be either a 0 or a 1 indicating whether the stock is predicted to overperform (1) or underperform(0) relative to the S&P 500 three months from now. An exception may be raised if sufficient data is not available for the selected stock ticker (an internet connection is required to download data). The pre-trained model was trained using only S&P 500 stock data. Please note that certain external packages are required as described below under [**dependencies**](#dependencies).
 
 ## Benchmarks
 
